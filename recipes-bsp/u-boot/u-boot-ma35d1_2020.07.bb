@@ -11,11 +11,14 @@ unset _PYTHON_SYSCONFIGDATA_NAME
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://Licenses/gpl-2.0.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-UBOOT_SRC ?= "git://github.com/OpenNuvoton/MA35D1_u-boot-v2020.07.git;branch=master;protocol=https"
+#UBOOT_SRC ?= "git://github.com/OpenNuvoton/MA35D1_u-boot-v2020.07.git;branch=master;protocol=https"
+UBOOT_SRC ?= "git:///media/home/wujl/MYD-LMA35/xwdbsp/ma35d1-uboot;branch=test;protocol=file"
 
-SRCBRANCH = "2020.07"
+#SRCBRANCH = "2020.07"
+SRCBRANCH = "test"
 SRC_URI = "${UBOOT_SRC}"
-SRCREV = "${UBOOT_SRCREV}"
+#SRCREV = "${UBOOT_SRCREV}"
+SRCREV = "5c02dadfe9f88418d64b21c7557de0c2577bdc97"
 
 SRC_URI += " file://uEnv-spinand-ubi.cfg \
              file://uEnv-nand-ubi.cfg \

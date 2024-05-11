@@ -9,7 +9,7 @@ IMAGE_LINGUAS = "en-us"
 
 IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
 
-IMAGE_FSTYPES_remove = " ubi spinand nand"
+#IMAGE_FSTYPES_remove = " ubi spinand nand"
 
 PACKAGECONFIG_append = " examples accessibility "
 

@@ -15,11 +15,13 @@ KERNEL_EXTRA_ARGS += "LOADADDR=${ma35d1_KERNEL_LOADADDR}"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
-SRCBRANCH = "linux-5.10.y"
+#SRCBRANCH = "linux-5.10.y"
+SRCBRANCH = "feature-L5.10.140"
 LOCALVERSION = "-${SRCBRANCH}"
 
-KERNEL_SRC ?= "git://github.com/OpenNuvoton/MA35D1_linux-5.10.y.git;protocol=https"
-SRC_URI = "${KERNEL_SRC}"
+#KERNEL_SRC ?= "git://github.com/OpenNuvoton/MA35D1_linux-5.10.y.git;protocol=https"
+KERNEL_SRC ?= "git:///media/home/wujl/MYD-LMA35/xwdbsp/ma35d1-kernel;protocol=file"
+SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
 
 SRC_URI += " \
     file://optee.config \
@@ -29,7 +31,8 @@ SRC_URI += " \
 
 SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', '88x2bu', ' file://88x2bu.ko', '', d)}"
 
-SRCREV="${KERNEL_SRCREV}"
+#SRCREV="${KERNEL_SRCREV}"
+SRCREV="afd1e4503e8ee634ddd609b22f91fc6a4fd2d188"
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 
