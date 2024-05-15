@@ -20,7 +20,7 @@ SRCBRANCH = "feature-L5.10.140"
 LOCALVERSION = "-${SRCBRANCH}"
 
 #KERNEL_SRC ?= "git://github.com/OpenNuvoton/MA35D1_linux-5.10.y.git;protocol=https"
-KERNEL_SRC ?= "git:///media/home/wujl/MYD-LMA35/xwdbsp/ma35d1-kernel;protocol=file"
+KERNEL_SRC ?= "git:///media/home/beste/01_Pro/ma35/bsp/ma35d1-kernel;protocol=file"
 SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
 
 SRC_URI += " \
