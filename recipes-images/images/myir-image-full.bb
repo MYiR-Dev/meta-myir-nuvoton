@@ -28,6 +28,54 @@ IMAGE_INSTALL_append = "\
     gstreamer1.0-plugins-bad \
     tslib-tests \
     tslib-calibrate \
+    tzdata \
+    memtester \
+    i2c-tools \
+    mmc-utils \
+    mtd-utils \
+    can-utils \
+    busybox \
+    util-linux \
+    gdb \
+    evtest \
+    serialcheck \
+    perf \
+    python3 \
+    avahi-daemon \
+    perl \
+    sqlite3 \
+    ethtool \
+    net-tools \
+    iptables \
+    iperf3 \
+    iproute2 \
+    proftpd \
+    tftp-hpa \
+    ppp \
+    quectel-cm \
+    tcpdump \
+    bridge-utils \
+    bluez5 \
+    openssl \
+    ncurses \
+    readline \
+    grep \
+    sed \
+    gawk \
+    qtbase  \
+    qtsvg \
+    qtquickcontrols \
+    qtquickcontrols2 \
+    qtmultimedia \
+    qtvirtualkeyboard \
+    libdrm \
+    fbset \
+    psplash \
+    v4l-utils \
+    alsa-utils \
+    bc \
+    pv \
+    dbus \
     "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
