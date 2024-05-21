@@ -1,0 +1,46 @@
+From 6eaff12ff6a58c8ef074dda0594ef27c5a8edd29 Mon Sep 17 00:00:00 2001
+From: beste <1596775839@qq.com>
+Date: Mon, 20 May 2024 17:15:03 +0800
+Subject: [PATCH] FEAT:Support the MYD-LMA35,Camera function is deleted,
+ copyright fontsize adjusted.
+
+---
+ CopyrightNoticeDialog.qml | 2 +-
+ HomeWindow.qml            | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CopyrightNoticeDialog.qml b/CopyrightNoticeDialog.qml
+index af67997..842a0ea 100755
+--- a/CopyrightNoticeDialog.qml
++++ b/CopyrightNoticeDialog.qml
+@@ -62,7 +62,7 @@ Popup {
+             id: infoText
+             anchors.centerIn: parent
+             color: "white"
+-            font.pixelSize: 16
++            font.pixelSize: 10
+             font.bold: true
+             text: qsTr("Copyright (C) 2020-2024\n
+ This program is free software: you can redistribute it and/or modify\n
+diff --git a/HomeWindow.qml b/HomeWindow.qml
+index a3278af..96f72f4 100755
+--- a/HomeWindow.qml
++++ b/HomeWindow.qml
+@@ -102,13 +102,13 @@ Rectangle {
+                 cimage:"qrc:/images/fhd/home/homepage_media_nor.png"
+                 cname: qsTr("多媒体")
+                 subNode: [
++			/*
+                     ListElement {
+                         aimage: "qrc:/images/wvga/home/media_icon_camera_nor.png"
+                         application: qsTr("摄像头")
+                         aqml: "CameraWindow.qml"
+                         acolor: "#02b9db"
+                     },
+-					/*
+                     ListElement {
+                         aimage:"qrc:/images/wvga/home/media_icon_video_nor.png"
+                         application: qsTr("播放器")
+-- 
+2.25.1
+

@@ -68,6 +68,7 @@ IMAGE_INSTALL_append = "\
     qtquickcontrols2 \
     qtmultimedia \
     qtvirtualkeyboard \
+    qtgraphicaleffects \
     libdrm \
     fbset \
     psplash \
@@ -76,6 +77,9 @@ IMAGE_INSTALL_append = "\
     bc \
     pv \
     dbus \
+    hmi \
+    wpa-supplicant \
+    ntp \
     "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction

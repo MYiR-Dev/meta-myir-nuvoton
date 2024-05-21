@@ -1,0 +1,49 @@
+From 5988ba91cbed58152fed32a1f1166e50ba438c92 Mon Sep 17 00:00:00 2001
+From: beste <1596775839@qq.com>
+Date: Sun, 7 Apr 2024 14:02:46 +0800
+Subject: [PATCH] FEAT:Support myir logo
+
+---
+ psplash-colors.h | 6 +++---
+ psplash-config.h | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/psplash-colors.h b/psplash-colors.h
+index 82a9893..3a61061 100644
+--- a/psplash-colors.h
++++ b/psplash-colors.h
+@@ -12,15 +12,15 @@
+ #define _HAVE_PSPLASH_COLORS_H
+ 
+ /* This is the overall background color */
+-#define PSPLASH_BACKGROUND_COLOR 0xec,0xec,0xe1
++#define PSPLASH_BACKGROUND_COLOR 0x00,0x00,0x00
+ 
+ /* This is the color of any text output */
+ #define PSPLASH_TEXT_COLOR 0x6d,0x6d,0x70
+ 
+ /* This is the color of the progress bar indicator */
+-#define PSPLASH_BAR_COLOR 0x6d,0x6d,0x70
++#define PSPLASH_BAR_COLOR 0xff,0xff,0xff
+ 
+ /* This is the color of the progress bar background */
+-#define PSPLASH_BAR_BACKGROUND_COLOR 0xec,0xec,0xe1
++#define PSPLASH_BAR_BACKGROUND_COLOR 0x00,0x00,0x00
+ 
+ #endif
+diff --git a/psplash-config.h b/psplash-config.h
+index eb90ef3..d928248 100644
+--- a/psplash-config.h
++++ b/psplash-config.h
+@@ -18,7 +18,7 @@
+ 
+ /* Bool indicating if the image is fullscreen, as opposed to split screen */
+ #ifndef PSPLASH_IMG_FULLSCREEN
+-#define PSPLASH_IMG_FULLSCREEN 0
++#define PSPLASH_IMG_FULLSCREEN 1
+ #endif
+ 
+ /* Bool indicated if the progress bar should be disabled */
+-- 
+2.25.1
+
