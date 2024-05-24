@@ -13,7 +13,9 @@ MYIR_HMI_SRC ?= "git://github.com/xmr123456/MXAPP2.git;protocol=https"
 
 SRC_URI = " \
     ${MYIR_HMI_SRC};branch=${SRCBRANCH} \
-           file://home/root/hmi.sh \
+           file://hmi.sh \
+           file://adl10-e \
+           file://adl10-e_client \
                    file://hmi.service \
                    file://usr/share/fonts/ttf/msyh.ttc \
                    file://usr/share/myir/ecg.dat \
@@ -23,7 +25,7 @@ SRC_URI = " \
                    file://usr/share/myir/myir.jpg \
                    file://usr/share/myir/song.mp3 \
                    file://usr/share/myir/song.wav \
-                   file://0001-FEAT-Support-the-MYD-LMA35-Camera-function-is-delete.patch \
+                   file://0001-FEAT-Reduce-CopyrightNotice-text-size.patch \
      "
 
 
@@ -37,12 +39,11 @@ inherit systemd
 inherit qmake5
 
 # DEPENDS += " packagegroup-qt5-imx qtquickcontrols2 qtconnectivity qtgraphicaleffects qtsvg qtmultimedia "
-DEPENDS += " qtquickcontrols2 qtconnectivity qtgraphicaleffects qtsvg qtmultimedia "
+DEPENDS += " qtquickcontrols2 qtconnectivity qtgraphicaleffects qtsvg qtmultimedia libmodbus"
 # RDEPENDS_${PN} += " weston bash qtgraphicaleffects-qmlplugins qtquickcontrols-qmlplugins qtsvg-plugins"
-ROOT_HOME="/home/root"
 
 do_install() {
-	install -d -m 755 ${D}${ROOT_HOME}
+	install -d -m 755 ${D}/usr/sbin
         install -d -m 755 ${D}${datadir}
         install -d -m 755 ${D}${datadir}/myir
         install -d -m 755 ${D}${datadir}/myir/Video
@@ -51,8 +52,10 @@ do_install() {
         install -d -m 755 ${D}${datadir}/fonts/ttf
         install -d -m 755 ${D}${systemd_system_unitdir}
 
-        install ${WORKDIR}/build/mxapp2 ${D}${ROOT_HOME}/
-	install -m 755 ${WORKDIR}${ROOT_HOME}/hmi.sh ${D}${ROOT_HOME}/hmi.sh
+        install ${WORKDIR}/build/mxapp2 ${D}/usr/sbin
+	install -m 755 ${WORKDIR}/hmi.sh ${D}/usr/sbin/hmi.sh
+	install -m 755 ${WORKDIR}/adl10-e ${D}/usr/sbin/adl10-e
+	install -m 755 ${WORKDIR}/adl10-e_client ${D}/usr/sbinadl10-e_client
         install -m 755 ${WORKDIR}${datadir}/fonts/ttf/msyh.ttc ${D}${datadir}/fonts/ttf/msyh.ttc
         install -m 755 ${WORKDIR}${datadir}/myir/ecg.dat ${D}${datadir}/myir/ecg.dat
         install -m 755 ${WORKDIR}${datadir}/myir/resp.text ${D}${datadir}/myir/resp.text

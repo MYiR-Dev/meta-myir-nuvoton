@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# 配置文件：GPIO和串口设备名称
+declare -A gpios=( ["10"]="205" ["11"]="63" ["12"]="129" ["13"]="204" ["14"]="185" ["15"]="184" )
+
+# 导出所有GPIO并设置方向为输出
+for gpio in "${gpios[@]}"; do
+    echo $gpio > /sys/class/gpio/export > /dev/null 2>&1
+    echo out > /sys/class/gpio/gpio$gpio/direction > /dev/null 2>&1
+done
+
+while true; do
+    echo "Please select the RS485 port number. Valid options are (10, 11, 12, 13, 14, 15). Any other input is invalid."
+    read port
+    gpio=${gpios[$port]}
+
+    if [ -z "$gpio" ]; then
+        echo "Invalid port number. Please try again."
+        continue
+    fi
+
+    while true; do
+        echo "Select RS485 operation:"
+        echo "1. Send data"
+        echo "2. Receive data"
+        echo "3. Exit"
+        echo "Enter your choice:"
+        read choice
+
+        case $choice in
+            1)
+                echo 1 > /sys/class/gpio/gpio$gpio/value
+                uart_test -d /dev/ttyS$port -b 115200 -m 1
+                ;;
+            2)
+                echo 0 > /sys/class/gpio/gpio$gpio/value
+                uart_test -d /dev/ttyS$port -b 115200 -m 0
+                ;;
+            3)
+                exit 0
+                ;;
+            *)
+                echo "Invalid choice. Try again."
+                ;;
+        esac
+    done
+done

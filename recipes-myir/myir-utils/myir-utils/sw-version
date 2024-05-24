@@ -1,0 +1,7 @@
+model        MYD_LM93X
+version      1.0.0
+bootloader   
+kernel      
+rootfs       
+app          
+time         202312201548 

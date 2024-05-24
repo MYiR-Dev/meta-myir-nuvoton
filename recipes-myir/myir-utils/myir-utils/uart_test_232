@@ -1,18 +1,35 @@
 #!/bin/bash
+
 # Function to send data via RS232
 send_data() {
     echo "Sending data..."
-    uart_test -m 0 -b 115200 -l -d /dev/ttyLP5 -w 1234567890
+    uart_test -d /dev/ttyS${num} -b 115200 -m 1
 }
 
 # Function to receive data via RS232
 receive_data() {
     echo "Receiving data..."
-    uart_test -m 0 -b 115200 -l -d /dev/ttyLP5
+    uart_test -d /dev/ttyS${num} -b 115200 -m 0
+}
+
+# Port number selection
+select_port() {
+    while true; do
+        read -p "Please select the RS232 port number. Valid options are (1, 2, 3, 4, 5, 8). Any other input is invalid. Please enter: " num
+        case $num in
+            1|2|3|4|5|8)
+                break
+                ;;
+            *)
+                echo "Invalid port number. Please enter 1, 2, 3, 4, 5, or 8."
+                ;;
+        esac
+    done
 }
 
 # Main menu
 while true; do
+    select_port
     echo "Select RS232 operation:"
     echo "1. Send data"
     echo "2. Receive data"

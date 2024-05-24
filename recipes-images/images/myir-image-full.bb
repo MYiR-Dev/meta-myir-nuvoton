@@ -80,6 +80,10 @@ IMAGE_INSTALL_append = "\
     hmi \
     wpa-supplicant \
     ntp \
+    libmodbus \
+    myir-utils \
+    start-service \
+    ppp-quectel \
     "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
