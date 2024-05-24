@@ -32,7 +32,7 @@ SRC_URI += " \
 SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', '88x2bu', ' file://88x2bu.ko', '', d)}"
 
 #SRCREV="${KERNEL_SRCREV}"
-SRCREV="afd1e4503e8ee634ddd609b22f91fc6a4fd2d188"
+SRCREV="7178bd7259eef63d9fb09e24475bf137962a8dae"
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 

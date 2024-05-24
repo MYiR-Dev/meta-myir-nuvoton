@@ -5,7 +5,8 @@ SECTION = "bootloaders"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://license.rst;md5=1dd070c98a281d18d9eefd938729b031"
 
-SRC_URI = "git://github.com/OpenNuvoton/MA35D1_arm-trusted-firmware-v2.3.git;branch=master;protocol=https"
+#SRC_URI = "git://github.com/OpenNuvoton/MA35D1_arm-trusted-firmware-v2.3.git;branch=master;protocol=https"
+SRC_URI = "git:///media/home/beste/01_Pro/ma35/bsp/ma35d1-tfa;branch=master;protocol=file"
 SRC_URI += "file://${TFA_DDR_HEADER}"
 SRCREV = "${TFA_SRCREV}"
 

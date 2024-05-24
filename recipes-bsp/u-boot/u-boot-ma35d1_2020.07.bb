@@ -18,7 +18,7 @@ UBOOT_SRC ?= "git:///media/home/beste/01_Pro/ma35/bsp/ma35d1-uboot;branch=test;p
 SRCBRANCH = "test"
 SRC_URI = "${UBOOT_SRC}"
 #SRCREV = "${UBOOT_SRCREV}"
-SRCREV = "5c02dadfe9f88418d64b21c7557de0c2577bdc97"
+SRCREV = "09d3d8dd1e1b327d591baf1255222e9252f2fb29"
 
 SRC_URI += " file://uEnv-spinand-ubi.cfg \
              file://uEnv-nand-ubi.cfg \
