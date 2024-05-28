@@ -5,11 +5,9 @@ inherit populate_sdk_qt5
 
 inherit core-image 
 
-IMAGE_LINGUAS = "en-us"
+IMAGE_LINGUAS = "en-us zh-cn"
 
 IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
-
-#IMAGE_FSTYPES_remove = " ubi spinand nand"
 
 PACKAGECONFIG_append = " examples accessibility "
 
@@ -84,6 +82,10 @@ IMAGE_INSTALL_append = "\
     myir-utils \
     start-service \
     ppp-quectel \
+    hostapd \
+    udev-extraconf \
+    libubootenv \
+    libmnl \
     "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
