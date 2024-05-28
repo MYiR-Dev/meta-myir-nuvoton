@@ -17,4 +17,15 @@ fi
 
 echo "Start Up"
 
+FILENAME="/etc/myir-hmi"
+
+if [ ! -f "$FILENAME" ] || [ "$(cat $FILENAME)" = "0" ]; then
+    echo "driftfile /var/lib/ntp/drift" > /etc/ntp.conf
+    echo "server ntp.aliyun.com iburst" >> /etc/ntp.conf
+    ts_calibrate
+    echo "1" > $FILENAME
+fi
+
+systemctl restart ntpd
+
 exit 0
