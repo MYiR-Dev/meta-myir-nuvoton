@@ -17,10 +17,9 @@ do_install_append() {
 	
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${sysconfdir}
-	install -d ${D}${sysconfdir}/init.d
 
 	install -m 0644 ${WORKDIR}/expand-part.service ${D}${systemd_system_unitdir}
-	install -m 755 ${WORKDIR}/expand_part.sh ${D}${sysconfdir}/init.d/expand_part.sh
+	install -m 755 ${WORKDIR}/expand_part.sh ${D}${sysconfdir}/expand_part.sh
 }
 
 pkg_postinst_ontarget_${PN} () {

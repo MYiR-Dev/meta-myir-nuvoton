@@ -1,0 +1,72 @@
+From 0ff818437bc4cf8d553d7fc9044d3443030f114c Mon Sep 17 00:00:00 2001
+From: beste <1596775839@qq.com>
+Date: Mon, 3 Jun 2024 17:42:33 +0800
+Subject: [PATCH] FEAT:Support Myir
+
+---
+ psplash-colors.h | 6 +++---
+ psplash-config.h | 2 +-
+ psplash.c        | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/psplash-colors.h b/psplash-colors.h
+index 82a9893..d64122f 100644
+--- a/psplash-colors.h
++++ b/psplash-colors.h
+@@ -12,15 +12,15 @@
+ #define _HAVE_PSPLASH_COLORS_H
+ 
+ /* This is the overall background color */
+-#define PSPLASH_BACKGROUND_COLOR 0xec,0xec,0xe1
++#define PSPLASH_BACKGROUND_COLOR 0xff,0xff,0xff
+ 
+ /* This is the color of any text output */
+ #define PSPLASH_TEXT_COLOR 0x6d,0x6d,0x70
+ 
+ /* This is the color of the progress bar indicator */
+-#define PSPLASH_BAR_COLOR 0x6d,0x6d,0x70
++#define PSPLASH_BAR_COLOR 0xff,0xff,0xff
+ 
+ /* This is the color of the progress bar background */
+-#define PSPLASH_BAR_BACKGROUND_COLOR 0xec,0xec,0xe1
++#define PSPLASH_BAR_BACKGROUND_COLOR 0xff,0xff,0xff
+ 
+ #endif
+diff --git a/psplash-config.h b/psplash-config.h
+index 0ba8440..d746ffc 100644
+--- a/psplash-config.h
++++ b/psplash-config.h
+@@ -18,7 +18,7 @@
+ 
+ /* Bool indicating if the image is fullscreen, as opposed to split screen */
+ #ifndef PSPLASH_IMG_FULLSCREEN
+-#define PSPLASH_IMG_FULLSCREEN 0
++#define PSPLASH_IMG_FULLSCREEN 1
+ #endif
+ 
+ /* Position of the image split from top edge, numerator of fraction */
+diff --git a/psplash.c b/psplash.c
+index 1a56629..e03c0e6 100644
+--- a/psplash.c
++++ b/psplash.c
+@@ -312,7 +312,7 @@ main (int argc, char** argv)
+ 			 POKY_IMG_RLE_PIXEL_DATA);
+ 
+   /* Draw progress bar border */
+-  psplash_fb_draw_image (fb, 
++  /*psplash_fb_draw_image (fb, 
+ 			 (fb->width  - BAR_IMG_WIDTH)/2, 
+ 			 SPLIT_LINE_POS(fb),
+ 			 BAR_IMG_WIDTH,
+@@ -320,7 +320,7 @@ main (int argc, char** argv)
+ 			 BAR_IMG_BYTES_PER_PIXEL,
+ 			 BAR_IMG_ROWSTRIDE,
+ 			 BAR_IMG_RLE_PIXEL_DATA);
+-
++	*/
+   psplash_draw_progress (fb, 0);
+ 
+ #ifdef PSPLASH_STARTUP_MSG
+-- 
+2.25.1
+

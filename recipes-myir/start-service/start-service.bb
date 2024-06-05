@@ -17,10 +17,9 @@ do_install_append() {
 	
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${sysconfdir}
-	install -d ${D}${sysconfdir}/init.d
 
 	install -m 0644 ${WORKDIR}/startup.service ${D}${systemd_system_unitdir}
-	install -m 755 ${WORKDIR}/startup.sh ${D}${sysconfdir}/init.d/startup.sh
+	install -m 755 ${WORKDIR}/startup.sh ${D}${sysconfdir}/startup.sh
 }
 
 pkg_postinst_ontarget_${PN} () {
