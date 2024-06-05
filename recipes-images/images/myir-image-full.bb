@@ -1,4 +1,4 @@
-SUMMARY = "NUC3500 example of image based on QT framework."
+SUMMARY = "MYiR Image Full for MYD-LMA35."
 LICENSE = "Proprietary"
 
 inherit populate_sdk_qt5
@@ -86,6 +86,7 @@ IMAGE_INSTALL_append = "\
     udev-extraconf \
     libubootenv \
     libmnl \
+    expand-part \
     "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction

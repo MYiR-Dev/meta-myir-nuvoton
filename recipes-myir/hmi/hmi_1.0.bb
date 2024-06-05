@@ -55,7 +55,7 @@ do_install() {
         install ${WORKDIR}/build/mxapp2 ${D}/usr/sbin
 	install -m 755 ${WORKDIR}/hmi.sh ${D}/usr/sbin/hmi.sh
 	install -m 755 ${WORKDIR}/adl10-e ${D}/usr/sbin/adl10-e
-	install -m 755 ${WORKDIR}/adl10-e_client ${D}/usr/sbinadl10-e_client
+	install -m 755 ${WORKDIR}/adl10-e_client ${D}/usr/sbin/adl10-e_client
         install -m 755 ${WORKDIR}${datadir}/fonts/ttf/msyh.ttc ${D}${datadir}/fonts/ttf/msyh.ttc
         install -m 755 ${WORKDIR}${datadir}/myir/ecg.dat ${D}${datadir}/myir/ecg.dat
         install -m 755 ${WORKDIR}${datadir}/myir/resp.text ${D}${datadir}/myir/resp.text
