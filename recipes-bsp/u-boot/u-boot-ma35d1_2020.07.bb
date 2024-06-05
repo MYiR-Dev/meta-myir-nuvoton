@@ -1,34 +1,7 @@
-
-DESCRIPTION = "ma35d1 U-Boot suppporting ma35d1 ev boards."
-#SECTION = "bootloaders"
+require u-boot-common-ma35d1_2020.07.inc
 require recipes-bsp/u-boot/u-boot.inc
 
 PROVIDES += "u-boot"
-DEPENDS += "dtc-native bc-native flex-native bison-native u-boot-scr-ma35d1"
-
-unset _PYTHON_SYSCONFIGDATA_NAME
-
-LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://Licenses/gpl-2.0.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
-
-#UBOOT_SRC ?= "git://github.com/OpenNuvoton/MA35D1_u-boot-v2020.07.git;branch=master;protocol=https"
-UBOOT_SRC ?= "git:///media/home/beste/01_Pro/ma35/bsp/ma35d1-uboot;branch=test;protocol=file"
-
-#SRCBRANCH = "2020.07"
-SRCBRANCH = "test"
-SRC_URI = "${UBOOT_SRC}"
-#SRCREV = "${UBOOT_SRCREV}"
-SRCREV = "09d3d8dd1e1b327d591baf1255222e9252f2fb29"
-
-SRC_URI += " file://uEnv-spinand-ubi.cfg \
-             file://uEnv-nand-ubi.cfg \
-           "
-PV = "${SRCBRANCH}"
-S = "${WORKDIR}/git"
-B = "${WORKDIR}/build"
-
-LOCALVERSION ?= "-${SRCBRANCH}"
-
 
 do_compile_append() {
         unset i j

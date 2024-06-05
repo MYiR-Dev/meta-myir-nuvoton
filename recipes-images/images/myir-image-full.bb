@@ -87,6 +87,7 @@ IMAGE_INSTALL_append = "\
     libubootenv \
     libmnl \
     expand-part \
+    u-boot-nuvoton-fw-utils \
     "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
