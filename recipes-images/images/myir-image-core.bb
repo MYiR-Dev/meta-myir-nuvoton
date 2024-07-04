@@ -74,6 +74,7 @@ IMAGE_INSTALL_append = "\
     libmnl \
     expand-part \
     u-boot-nuvoton-fw-utils \
+    igh-ethercat \
     "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
