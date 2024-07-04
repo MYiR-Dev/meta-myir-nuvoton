@@ -1,0 +1,22 @@
+From de2935f49180225bb80054590a444412b063b38c Mon Sep 17 00:00:00 2001
+From: beste <1596775839@qq.com>
+Date: Thu, 13 Jun 2024 11:25:34 +0800
+Subject: [PATCH] FEAT:Modify default log level is 1
+
+---
+ arch/arm64/configs/myd_lma35d1_defconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/configs/myd_lma35d1_defconfig b/arch/arm64/configs/myd_lma35d1_defconfig
+index 636173e8d..cc8ebefea 100755
+--- a/arch/arm64/configs/myd_lma35d1_defconfig
++++ b/arch/arm64/configs/myd_lma35d1_defconfig
+@@ -583,4 +583,4 @@ CONFIG_BTCOEX=y
+ CONFIG_RTL8822CU=m
+ CONFIG_EEPROM_AT24=y
+ CONFIG_GPIO_WATCHDOG=y
+-CONFIG_CONSOLE_LOGLEVEL_DEFAULT=3
++CONFIG_CONSOLE_LOGLEVEL_DEFAULT=1
+-- 
+2.25.1
+

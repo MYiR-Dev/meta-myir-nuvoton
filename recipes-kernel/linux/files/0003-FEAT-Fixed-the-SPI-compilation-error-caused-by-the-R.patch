@@ -1,0 +1,71 @@
+From 34954715a79f489eaa9c2e801e90520603db2fe2 Mon Sep 17 00:00:00 2001
+From: beste <1596775839@qq.com>
+Date: Wed, 12 Jun 2024 11:17:01 +0800
+Subject: [PATCH 2/4] FEAT:Fixed the SPI compilation error caused by the RT
+ patch.
+
+---
+ drivers/spi/spi-ma35d1-qspi.c | 22 +++++++++++++++-------
+ drivers/spi/spi-ma35d1-spi.c  |  8 ++++++++
+ 2 files changed, 23 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/spi/spi-ma35d1-qspi.c b/drivers/spi/spi-ma35d1-qspi.c
+index a709742e0..c4c008cfd 100644
+--- a/drivers/spi/spi-ma35d1-qspi.c
++++ b/drivers/spi/spi-ma35d1-qspi.c
+@@ -998,13 +998,21 @@ static int nuvoton_spi_probe(struct platform_device *pdev)
+ 		dma_cap_set(DMA_PRIVATE, mask);
+ 
+ 		/* Initailize wait queue head as  __WAIT_QUEUE_HEAD_INITIALIZER() */
+-		nuvoton->slave_txdone.lock           = __SPIN_LOCK_UNLOCKED(nuvoton->slave_txdone.lock);
+-		nuvoton->slave_txdone.head.next       = &(nuvoton->slave_txdone).head;
+-		nuvoton->slave_txdone.head.prev       = &(nuvoton->slave_txdone).head;
+-
+-		nuvoton->slave_rxdone.lock           = __SPIN_LOCK_UNLOCKED(nuvoton->slave_rxdone.lock);
+-		nuvoton->slave_rxdone.head.next       = &(nuvoton->slave_rxdone).head;
+-		nuvoton->slave_rxdone.head.prev       = &(nuvoton->slave_rxdone).head;
++#ifndef CONFIG_PREEMPT_RT
++                nuvoton->slave_txdone.lock           = __SPIN_LOCK_UNLOCKED(nuvoton->slave_txdone.lock);
++#else
++                nuvoton->slave_txdone.lock           =  (spinlock_t)__SPIN_LOCK_UNLOCKED(nuvoton->slave_txdone);
++#endif
++                nuvoton->slave_txdone.head.next       = &(nuvoton->slave_txdone).head;
++                nuvoton->slave_txdone.head.prev       = &(nuvoton->slave_txdone).head;
++
++#ifndef CONFIG_PREEMPT_RT
++                nuvoton->slave_rxdone.lock           = __SPIN_LOCK_UNLOCKED(nuvoton->slave_rxdone.lock);
++#else
++                nuvoton->slave_rxdone.lock           = (spinlock_t)__SPIN_LOCK_UNLOCKED(nuvoton->slave_rxdone);
++#endif
++                nuvoton->slave_rxdone.head.next       = &(nuvoton->slave_rxdone).head;
++                nuvoton->slave_rxdone.head.prev       = &(nuvoton->slave_rxdone).head;
+ 
+ 		/* Request the DMA channel from the DMA engine and then use the device from
+ 		 * the channel for the proxy channel also.
+diff --git a/drivers/spi/spi-ma35d1-spi.c b/drivers/spi/spi-ma35d1-spi.c
+index fe40a956a..af12eb692 100644
+--- a/drivers/spi/spi-ma35d1-spi.c
++++ b/drivers/spi/spi-ma35d1-spi.c
+@@ -941,11 +941,19 @@ static int nuvoton_spi_probe(struct platform_device *pdev)
+ 		dma_cap_set(DMA_PRIVATE, mask);
+ 
+ 		/* Initailize wait queue head as  __WAIT_QUEUE_HEAD_INITIALIZER() */
++#ifndef CONFIG_PREEMPT_RT
+ 		nuvoton->slave_txdone.lock           = __SPIN_LOCK_UNLOCKED(nuvoton->slave_txdone.lock);
++#else
++		nuvoton->slave_txdone.lock           =  (spinlock_t)__SPIN_LOCK_UNLOCKED(nuvoton->slave_txdone);
++#endif
+ 		nuvoton->slave_txdone.head.next       = &(nuvoton->slave_txdone).head;
+ 		nuvoton->slave_txdone.head.prev       = &(nuvoton->slave_txdone).head;
+ 
++#ifndef CONFIG_PREEMPT_RT
+ 		nuvoton->slave_rxdone.lock           = __SPIN_LOCK_UNLOCKED(nuvoton->slave_rxdone.lock);
++#else
++		nuvoton->slave_rxdone.lock           = (spinlock_t)__SPIN_LOCK_UNLOCKED(nuvoton->slave_rxdone);
++#endif
+ 		nuvoton->slave_rxdone.head.next       = &(nuvoton->slave_rxdone).head;
+ 		nuvoton->slave_rxdone.head.prev       = &(nuvoton->slave_rxdone).head;
+ 
+-- 
+2.25.1
+

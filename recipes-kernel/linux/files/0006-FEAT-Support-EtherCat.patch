@@ -1,0 +1,125 @@
+From fefcb42b68d2c21485f4b37220bd11ed2748f849 Mon Sep 17 00:00:00 2001
+From: beste <1596775839@qq.com>
+Date: Wed, 26 Jun 2024 14:07:20 +0800
+Subject: [PATCH] FEAT:Support EtherCat
+
+---
+ arch/arm64/boot/dts/myir/ma35d1.dtsi                 | 4 ++--
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi              | 4 ++--
+ drivers/net/ethernet/stmicro/stmmac/hwif.c           | 3 +++
+ drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.c | 1 +
+ drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c    | 4 ++++
+ drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c     | 3 ++-
+ 6 files changed, 14 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/myir/ma35d1.dtsi b/arch/arm64/boot/dts/myir/ma35d1.dtsi
+index 3afe8c8d8..affc10f2b 100644
+--- a/arch/arm64/boot/dts/myir/ma35d1.dtsi
++++ b/arch/arm64/boot/dts/myir/ma35d1.dtsi
+@@ -674,7 +674,7 @@ rpmsg {
+ 	};
+ 
+ 	gmac0: ethernet@40120000 {
+-		compatible = "nuvoton,ma35d1-gmac";
++		compatible = "nuvoton,ma35d1-gmac-ex";
+ 		reg = <0x0 0x40120000 0x0 0x10000>;
+ 		interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "macirq";
+@@ -701,7 +701,7 @@ eth_phy0: ethernet-phy@4 {
+ 	};
+ 
+ 	gmac1: ethernet@40130000 {
+-		compatible = "nuvoton,ma35d1-gmac";
++		compatible = "nuvoton,ma35d1-gmac-ex";
+ 		reg = <0x0 0x40130000 0x0 0x10000>;
+ 		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "macirq";
+diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+index e02047d53..23efd5aa5 100644
+--- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
++++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+@@ -608,7 +608,7 @@ i2c5: i2c@40850000 {
+ 		resets = <&reset MA35D1_RESET_I2C5>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		status = "disable";
++		status = "disabled";
+ 	};
+ 
+ 	i2s0: i2s@40480000 {
+@@ -708,7 +708,7 @@ eth_phy0: ethernet-phy@4 {
+ 	};
+ 
+ 	gmac1: ethernet@40130000 {
+-		compatible = "nuvoton,ma35d1-gmac";
++		compatible = "nuvoton,ma35d1-gmac-ex";
+ 		reg = <0x0 0x40130000 0x0 0x10000>;
+ 		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-names = "macirq";
+diff --git a/drivers/net/ethernet/stmicro/stmmac/hwif.c b/drivers/net/ethernet/stmicro/stmmac/hwif.c
+index bb7114f97..b3a844cbf 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/hwif.c
++++ b/drivers/net/ethernet/stmicro/stmmac/hwif.c
+@@ -340,3 +340,6 @@ int stmmac_hwif_init(struct stmmac_priv *priv)
+ 			id, needs_gmac, needs_gmac4);
+ 	return -EINVAL;
+ }
++
++EXPORT_SYMBOL_GPL(stmmac_hwif_init);
++
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.c
+index 0c0f01f49..0d9562603 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_ethtool.c
+@@ -1024,3 +1024,4 @@ void stmmac_set_ethtool_ops(struct net_device *netdev)
+ {
+ 	netdev->ethtool_ops = &stmmac_ethtool_ops;
+ }
++EXPORT_SYMBOL_GPL(stmmac_set_ethtool_ops);
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+index 7c1a14b25..a225cec40 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+@@ -397,6 +397,7 @@ int stmmac_mdio_reset(struct mii_bus *bus)
+ 	return 0;
+ }
+ 
++EXPORT_SYMBOL_GPL(stmmac_mdio_reset);
+ /**
+  * stmmac_mdio_register
+  * @ndev: net device structure
+@@ -545,6 +546,8 @@ int stmmac_mdio_register(struct net_device *ndev)
+ 	return err;
+ }
+ 
++EXPORT_SYMBOL_GPL(stmmac_mdio_register);
++
+ /**
+  * stmmac_mdio_unregister
+  * @ndev: net device structure
+@@ -564,3 +567,4 @@ int stmmac_mdio_unregister(struct net_device *ndev)
+ 
+ 	return 0;
+ }
++EXPORT_SYMBOL_GPL(stmmac_mdio_unregister);
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+index 0989e2bb6..02424cff1 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+@@ -214,7 +214,7 @@ void stmmac_ptp_register(struct stmmac_priv *priv)
+ 	} else if (priv->ptp_clock)
+ 		netdev_info(priv->dev, "registered PTP clock\n");
+ }
+-
++EXPORT_SYMBOL_GPL(stmmac_ptp_register);
+ /**
+  * stmmac_ptp_unregister
+  * @priv: driver private structure
+@@ -230,3 +230,4 @@ void stmmac_ptp_unregister(struct stmmac_priv *priv)
+ 			 priv->dev->name);
+ 	}
+ }
++EXPORT_SYMBOL_GPL(stmmac_ptp_unregister);
+-- 
+2.25.1
+
