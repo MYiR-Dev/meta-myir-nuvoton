@@ -88,6 +88,10 @@ IMAGE_INSTALL_append = "\
     libmnl \
     expand-part \
     u-boot-nuvoton-fw-utils \
+    temp-ctrl \
+    valgrind \
+    iproute2 \
+    python3-pip \
     "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
