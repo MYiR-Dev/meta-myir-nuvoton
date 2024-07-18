@@ -8,4 +8,4 @@ export QT_QPA_EGLFS_ALWAYS_SET_MODE=1
 export WAYLAND_DISPLAY=/run/wayland-0
 export XDG_RUNTIME_DIR=/run/user/0
 export  QT_QPA_PLATFORM=linuxfb:fb=/dev/fb0:offset=0x0
-/usr/sbin/mxapp2
+/usr/sbin/mxapp2 &

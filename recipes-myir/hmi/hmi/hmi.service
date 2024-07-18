@@ -4,7 +4,7 @@ After=getty@tty1.service psplash-quit.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/sbin/hmi.sh
+ExecStart=/usr/sbin/hmi.sh &
 
 
 [Install]
