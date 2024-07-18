@@ -14,9 +14,9 @@ UBOOT_SRC ?= "git:///media/home/beste/01_Pro/ma35/bsp/new/myir-nuvoton-uboot;bra
 #SRCBRANCH = "2020.07"
 SRCBRANCH = "feature-v2020.07"
 SRC_URI = "${UBOOT_SRC}"
-UBOOT_SRCREV = "feature-v2020.07"
-#SRCREV = "${UBOOT_SRCREV}"
-SRCREV = "791db0a61e0f83f29f09aeec930337dca1183627" 
+#UBOOT_SRCREV = "feature-v2020.07"
+UBOOT_SRCREV = "${AUTOREV}"
+SRCREV = "${UBOOT_SRCREV}"
 
 SRC_URI += " file://uEnv-spinand-ubi.cfg \
              file://uEnv-nand-ubi.cfg \
