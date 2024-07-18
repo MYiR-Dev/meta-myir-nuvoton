@@ -1,0 +1,8 @@
+headerfile="header-myir-image-core-myd-lma35-spinand-spinand.bin"
+bl2dtbfile="bl2-ma35d1.dtb"
+bl2binfile="bl2-ma35d1.bin"
+fipfile="fip.bin-spinand"
+envfile="u-boot-initial-env.bin-spinand"
+dtbfile="myb-lma35dx-qspi.dtb"
+imagefile="Image"
+rootfsfile="rootfs-core.ubi"
