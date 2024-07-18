@@ -17,6 +17,8 @@ SRC_URI = "file://licenses/GPL-2 \
                    file://etc/myir_test/wifi_on_ap  \
                    file://etc/myir_test/wifi_on_sta  \
 		   file://20-static-usb0.network \
+		   file://90-statuc-eth0.network \
+		   file://90-statuc-eth1.network \
 		   file://sw-version \
           "
           
@@ -42,6 +44,8 @@ do_install (){
         install -m 755 ${WORKDIR}/watchdog_test ${D}/usr/bin/watchdog_test
 
 	install -m 644 ${WORKDIR}/20-static-usb0.network ${D}${systemd_system_unitdir}/../network/20-static-usb0.network
+	install -m 644 ${WORKDIR}/90-statuc-eth0.network ${D}${systemd_system_unitdir}/../network/90-statuc-eth0.network
+	install -m 644 ${WORKDIR}/90-statuc-eth1.network ${D}${systemd_system_unitdir}/../network/90-statuc-eth1.network
 	install -m 644 ${WORKDIR}/sw-version ${D}/etc/sw-version
 	
 }
