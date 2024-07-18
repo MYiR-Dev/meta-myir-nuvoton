@@ -18,9 +18,10 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 #SRCBRANCH = "linux-5.10.y"
 SRCBRANCH = "feature-L5.10.140"
 LOCALVERSION = "-${SRCBRANCH}"
+KERNEL_SRCREV = "${AUTOREV}"
 
 #KERNEL_SRC ?= "git://github.com/OpenNuvoton/MA35D1_linux-5.10.y.git;protocol=https"
-KERNEL_SRC ?= "git:///media/home/beste/01_Pro/ma35/bsp/ma35d1-kernel;protocol=file"
+KERNEL_SRC ?= "git:///media/home/beste/01_Pro/ma35/bsp/new/new/myir-nuvoton-linux;protocol=file"
 SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
 
 SRC_URI += " \
@@ -31,8 +32,7 @@ SRC_URI += " \
 
 SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', '88x2bu', ' file://88x2bu.ko', '', d)}"
 
-#SRCREV="${KERNEL_SRCREV}"
-SRCREV="7178bd7259eef63d9fb09e24475bf137962a8dae"
+SRCREV="${KERNEL_SRCREV}"
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 
