@@ -12,12 +12,12 @@ index c9dcfec57..aa18e642a 100755
 --- a/arch/arm64/configs/myd_lma35d1_defconfig
 +++ b/arch/arm64/configs/myd_lma35d1_defconfig
 @@ -585,3 +585,6 @@ CONFIG_EEPROM_AT24=y
- CONFIG_GPIO_WATCHDOG=y
- CONFIG_CONSOLE_LOGLEVEL_DEFAULT=1
- CONFIG_PREEMPT_RT=y
+ CONFIG_RTL8822CU=m
 +# CONFIG_INITRAMFS_FORCE is not set
-+CONFIG_CMDLINE="root=/dev/mmcblk1p1 rootfstype=ext4 rw rootwait isolcpus=1 console=ttyS0,115200n8 rdinit=/sbin/init mem=248M"
++CONFIG_CMDLINE="root=/dev/mmcblk1p1 rootfstype=ext4 rw rootwait isolcpus=1 console=ttyS0,115200n8 rdinit=/sbin/init mem=248M loglevel=0 crashkernel=auto"
 +CONFIG_CMDLINE_FORCE=y
+ CONFIG_PREEMPT_RT=y
+ CONFIG_EEPROM_AT24=y
 -- 
 2.25.1
 

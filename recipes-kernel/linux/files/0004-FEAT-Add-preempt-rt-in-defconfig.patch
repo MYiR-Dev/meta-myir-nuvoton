@@ -12,10 +12,10 @@ index cc8ebefea..c9dcfec57 100755
 --- a/arch/arm64/configs/myd_lma35d1_defconfig
 +++ b/arch/arm64/configs/myd_lma35d1_defconfig
 @@ -584,3 +584,4 @@ CONFIG_RTL8822CU=m
++CONFIG_PREEMPT_RT=y
  CONFIG_EEPROM_AT24=y
  CONFIG_GPIO_WATCHDOG=y
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=1
-+CONFIG_PREEMPT_RT=y
 -- 
 2.25.1
 
