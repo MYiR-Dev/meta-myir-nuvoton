@@ -23,11 +23,11 @@ do_install(){
 
 	install -m 755 ${WORKDIR}/fac-burn-flash.service ${D}${systemd_system_unitdir}/fac-burn-flash.service
 
-	if [ MACHINENAME == "myir-image-emmc" ];then
+	if [ MACHINENAME == "myd-lma35-emmc" ];then
         	install -m 755 ${WORKDIR}/home/root/burn_emmc.sh ${D}/home/root/burn_flash.sh
         	install -m 755 ${WORKDIR}/home/root/Manifest-emmc ${D}/home/root/lma35_images/Manifest
 		install -m 755 ${DEPLOY_DIR_IMAGE}/myir-image-full-${MACHINENAME}.ext4  ${D}/home/root/lma35_images/rootfs-full.ext4
-	elif [ MACHINENAME == "myir-image-spinand" ];then
+	elif [ MACHINENAME == "myd-lma35-spinand" ];then
 		install -m 755 ${WORKDIR}/home/root/burn_spinand.sh ${D}/home/root/burn_flash.sh
         	install -m 755 ${WORKDIR}/home/root/Manifest-spinand ${D}/home/root/lma35_images/Manifest
 		install -m 755 ${DEPLOY_DIR_IMAGE}/myir-image-core-${MACHINENAME}.ubi ${D}/home/root/lma35_images/rootfs-core.ubi
