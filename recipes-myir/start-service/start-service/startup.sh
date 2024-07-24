@@ -1,5 +1,8 @@
 #!/bin/sh
 
+rmmod rtk_btusb
+modprobe rtk_btusb
+
 TIMESYNCD_CONF="/etc/systemd/timesyncd.conf"
 NEW_CONF_CONTENT="[Time]\nFallbackNTP=ntp.ntsc.ac.cn cn.ntp.org.cn time1.google.com time2.google.com time3.google.com time4.google.com"
 

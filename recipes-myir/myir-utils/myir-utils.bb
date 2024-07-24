@@ -20,6 +20,8 @@ SRC_URI = "file://licenses/GPL-2 \
 		   file://10-statuc-eth0.network \
 		   file://10-statuc-eth1.network \
 		   file://sw-version \
+		   file://rtl8822cu_config \
+		   file://rtl8822cu_fw \
           "
           
 inherit  systemd
@@ -32,6 +34,7 @@ do_install (){
 	install -d ${D}/etc
 	install -d ${D}/etc/myir_test
 	install -d ${D}/usr/bin
+	install -d ${D}/lib/firmware
 
         install -m 755 ${WORKDIR}/etc/myir_test/myir_audio_play ${D}/etc/myir_test
         install -m 755 ${WORKDIR}/etc/myir_test/myir_camera_play ${D}/etc/myir_test
@@ -42,6 +45,9 @@ do_install (){
         install -m 755 ${WORKDIR}/uart_test_485 ${D}/usr/bin/uart_test_485
         install -m 755 ${WORKDIR}/uart_test_232 ${D}/usr/bin/uart_test_232
         install -m 755 ${WORKDIR}/watchdog_test ${D}/usr/bin/watchdog_test
+
+        install -m 755 ${WORKDIR}/rtl8822cu_fw ${D}/lib/firmware/rtl8822cu_fw
+        install -m 755 ${WORKDIR}/rtl8822cu_config ${D}/lib/firmware/rtl8822cu_config
 
 	install -m 644 ${WORKDIR}/20-static-usb0.network ${D}${systemd_system_unitdir}/../network/20-static-usb0.network
 	install -m 644 ${WORKDIR}/10-statuc-eth0.network ${D}${systemd_system_unitdir}/../network/10-statuc-eth0.network
