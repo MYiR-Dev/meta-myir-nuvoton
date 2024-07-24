@@ -173,7 +173,7 @@ burn_image()
 burn_rootfs()
 {
     #burn rootfs file
-	dd if=${ROOTFS_FILE} of=${DRIVE} bs=512 seek=65536
+        mtd_debug write /dev/mtd4 0x0 ${len_ROOTFS_FILE} ${ROOTFS_FILE}
 	cmd_check $? "Update rootfs"
 
 	sync
@@ -266,7 +266,7 @@ for i in {1..99}; do
 	break
 	fi
     draw_progress_bar $i > /dev/ttyS0
-    sleep 1
+    sleep 0.1
     printf "\r"  > /dev/ttyS0
 done
 draw_progress_bar 100 > /dev/ttyS0

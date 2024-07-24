@@ -10,6 +10,7 @@ IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
 PACKAGECONFIG_append = " examples accessibility "
 
 IMAGE_INSTALL_append = "\
+    mtd-utils \
     ncurses \
     can-utils \
     coreutils \
