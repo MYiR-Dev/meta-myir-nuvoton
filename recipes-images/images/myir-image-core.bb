@@ -16,6 +16,7 @@ IMAGE_ROOTFS_EXTRA_SPACE_append = "${@bb.utils.contains("DISTRO_FEATURES", "syst
 IMAGE_FEATURES += " ssh-server-dropbear"
 
 IMAGE_INSTALL_append = "\
+    kernel-modules \
     directfb-env \
     v4l-utils \
     tslib-tests \
@@ -25,7 +26,6 @@ IMAGE_INSTALL_append = "\
     i2c-tools \
     mmc-utils \
     mtd-utils \
-    can-utils \
     busybox \
     evtest \
     serialcheck \
@@ -50,15 +50,17 @@ IMAGE_INSTALL_append = "\
     v4l-utils \
     alsa-utils \
     wpa-supplicant \
-	myir-utils \
+    myir-utils \
     start-service \
     ppp-quectel \
     hostapd \
-	expand-part \
+    expand-part \
     u-boot-nuvoton-fw-utils \
     igh-ethercat \
     temp-ctrl \
     libubootenv \
-	bc \
+    bc \
     pv \
+    libsocketcan \
+    canutils \
 "
