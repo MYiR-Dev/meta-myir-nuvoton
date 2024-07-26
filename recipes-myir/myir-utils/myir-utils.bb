@@ -22,6 +22,9 @@ SRC_URI = "file://licenses/GPL-2 \
 		   file://sw-version \
 		   file://rtl8822cu_config \
 		   file://rtl8822cu_fw \
+		   file://eeprom_test \
+		   file://myir_udhcpd.conf \
+		   file://myir_hostapd.conf \
           "
           
 inherit  systemd
@@ -45,6 +48,10 @@ do_install (){
         install -m 755 ${WORKDIR}/uart_test_485 ${D}/usr/bin/uart_test_485
         install -m 755 ${WORKDIR}/uart_test_232 ${D}/usr/bin/uart_test_232
         install -m 755 ${WORKDIR}/watchdog_test ${D}/usr/bin/watchdog_test
+        install -m 755 ${WORKDIR}/eeprom_test ${D}/usr/bin/eeprom_test
+        install -m 755 ${WORKDIR}/framebuffer_test ${D}/usr/bin/framebuffer_test
+        install -m 755 ${WORKDIR}/myir_hostapd.conf ${D}/etc/myir_hostapd.conf
+        install -m 755 ${WORKDIR}/myir_udhcpd.conf ${D}/etc/myir_udhcpd.conf
 
         install -m 755 ${WORKDIR}/rtl8822cu_fw ${D}/lib/firmware/rtl8822cu_fw
         install -m 755 ${WORKDIR}/rtl8822cu_config ${D}/lib/firmware/rtl8822cu_config
