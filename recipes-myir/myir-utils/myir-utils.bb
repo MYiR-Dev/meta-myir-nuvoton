@@ -23,6 +23,7 @@ SRC_URI = "file://licenses/GPL-2 \
 		   file://rtl8822cu_config \
 		   file://rtl8822cu_fw \
 		   file://eeprom_test \
+		   file://framebuffer_test \
 		   file://myir_udhcpd.conf \
 		   file://myir_hostapd.conf \
           "
