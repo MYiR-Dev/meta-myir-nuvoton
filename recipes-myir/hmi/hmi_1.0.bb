@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 S = "${WORKDIR}/git"
 
-SRCBRANCH = "MXAPP2-Qt5"
+SRCBRANCH = "MXAPP2-Qt5-novideo"
 
 MYIR_HMI_SRC ?= "git://github.com/xmr123456/MXAPP2.git;protocol=https"
 
@@ -25,6 +25,7 @@ SRC_URI = " \
                    file://usr/share/myir/myir.jpg \
                    file://usr/share/myir/song.mp3 \
                    file://usr/share/myir/song.wav \
+                   file://usr/share/myir/myir_video.mp4 \
                    file://0001-FEAT-Reduce-CopyrightNotice-text-size.patch \
      "
 
@@ -64,6 +65,7 @@ do_install() {
         install -m 755 ${WORKDIR}${datadir}/myir/myir.jpg ${D}${datadir}/myir/Capture/myir.jpg
         install -m 755 ${WORKDIR}${datadir}/myir/song.mp3 ${D}${datadir}/myir/Music/song.mp3
         install -m 755 ${WORKDIR}${datadir}/myir/song.wav ${D}${datadir}/myir/Music/song.wav
+        install -m 755 ${WORKDIR}${datadir}/myir/myir_video.mp4 ${D}${datadir}/myir/Video/myir_video.mp4
 
         install -m 644 ${WORKDIR}/hmi.service ${D}${systemd_system_unitdir}/hmi.service
 }
