@@ -64,6 +64,7 @@ IMAGE_INSTALL_append = "\
     libsocketcan \
     canutils \
     coreutils \
+    util-linux \
 "
 
 ROOTFS_POSTPROCESS_COMMAND += "remove_busybox_dd; "
