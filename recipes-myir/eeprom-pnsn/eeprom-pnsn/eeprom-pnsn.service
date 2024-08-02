@@ -1,0 +1,11 @@
+[Unit]
+Description=Temperature Control Service
+After=getty@tty1.service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/eeprom.sh
+TimeoutSec=0
+
+[Install]
+WantedBy=multi-user.target

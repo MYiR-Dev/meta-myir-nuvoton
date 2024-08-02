@@ -65,6 +65,7 @@ IMAGE_INSTALL_append = "\
     canutils \
     coreutils \
     util-linux \
+    eeprom-pnsn \
 "
 
 ROOTFS_POSTPROCESS_COMMAND += "remove_busybox_dd; "

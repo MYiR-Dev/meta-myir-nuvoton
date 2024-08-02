@@ -108,6 +108,7 @@ IMAGE_INSTALL_append = "\
     ffmpeg \
     coreutils \
     graphic-demo \
+    eeprom-pnsn \
 "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
