@@ -16,6 +16,7 @@ SRC_URI = "file://licenses/GPL-2 \
                    file://etc/myir_test/myir_dial  \
                    file://etc/myir_test/wifi_on_ap  \
                    file://etc/myir_test/wifi_on_sta  \
+                   file://etc/myir_test/myir_video_play  \
 		   file://20-static-usb0.network \
 		   file://10-statuc-eth0.network \
 		   file://10-statuc-eth1.network \
@@ -42,6 +43,7 @@ do_install (){
 
         install -m 755 ${WORKDIR}/etc/myir_test/myir_audio_play ${D}/etc/myir_test
         install -m 755 ${WORKDIR}/etc/myir_test/myir_camera_play ${D}/etc/myir_test
+        install -m 755 ${WORKDIR}/etc/myir_test/myir_video_play ${D}/etc/myir_test
         install -m 755 ${WORKDIR}/etc/myir_test/myir_dial ${D}/etc/myir_test
         install -m 755 ${WORKDIR}/etc/myir_test/wifi_on_ap ${D}/etc/myir_test
         install -m 755 ${WORKDIR}/etc/myir_test/wifi_on_sta ${D}/etc/myir_test	
