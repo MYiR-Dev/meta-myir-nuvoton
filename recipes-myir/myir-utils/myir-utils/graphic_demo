@@ -1,0 +1,47 @@
+#!/bin/sh
+
+function clean_fb_0(){
+       dd if=/dev/zero of=/dev/fb0 bs=1M > /dev/null 2>&1
+}
+
+function graphic_demo(){
+    killall mxapp2 > /dev/null 2>&1
+    killall hmi.sh > /dev/null 2>&1
+    clean_fb_0
+    sleep 0.5
+    export  QT_QPA_FB_FORCE_FULLSCREEN=0
+    /opt/position_test -platform linuxfb:fb=/dev/fb1 &
+
+    export  QT_QPA_FB_FORCE_FULLSCREEN=1
+    cnt=0
+    fuser -k /dev/tty1
+    sleep 0.2
+    /opt/animatedtiles > /dev/null 2>&1 & 
+}
+function graphic_demo_stop(){
+     result=$(pidof position_test)
+     echo $result
+     kill $result
+
+
+    result=$(pidof animatedtiles)
+     echo $result
+     kill $result
+
+     clean_fb_0
+     sleep 0.5
+
+}
+
+case "$1" in
+    start)
+        graphic_demo
+        ;;
+    stop)
+        graphic_demo_stop
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac

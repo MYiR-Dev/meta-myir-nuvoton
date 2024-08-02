@@ -26,6 +26,9 @@ SRC_URI = "file://licenses/GPL-2 \
 		   file://framebuffer_test \
 		   file://myir_udhcpd.conf \
 		   file://myir_hostapd.conf \
+		   file://position_test \
+		   file://graphic_demo \
+		   file://animatedtiles \
           "
           
 inherit  systemd
@@ -39,6 +42,7 @@ do_install (){
 	install -d ${D}/etc/myir_test
 	install -d ${D}/usr/bin
 	install -d ${D}/lib/firmware
+	install -d ${D}/opt/
 
         install -m 755 ${WORKDIR}/etc/myir_test/myir_audio_play ${D}/etc/myir_test
         install -m 755 ${WORKDIR}/etc/myir_test/myir_camera_play ${D}/etc/myir_test
@@ -50,12 +54,16 @@ do_install (){
         install -m 755 ${WORKDIR}/uart_test_232 ${D}/usr/bin/uart_test_232
         install -m 755 ${WORKDIR}/watchdog_test ${D}/usr/bin/watchdog_test
         install -m 755 ${WORKDIR}/eeprom_test ${D}/usr/bin/eeprom_test
+        install -m 755 ${WORKDIR}/graphic_demo ${D}/usr/bin/graphic_demo
         install -m 755 ${WORKDIR}/framebuffer_test ${D}/usr/bin/framebuffer_test
         install -m 755 ${WORKDIR}/myir_hostapd.conf ${D}/etc/myir_hostapd.conf
         install -m 755 ${WORKDIR}/myir_udhcpd.conf ${D}/etc/myir_udhcpd.conf
 
         install -m 755 ${WORKDIR}/rtl8822cu_fw ${D}/lib/firmware/rtl8822cu_fw
         install -m 755 ${WORKDIR}/rtl8822cu_config ${D}/lib/firmware/rtl8822cu_config
+
+	install -m 755 ${WORKDIR}/position_test ${D}/opt/position_test
+	install -m 755 ${WORKDIR}/animatedtiles ${D}/opt/animatedtiles
 
 	install -m 644 ${WORKDIR}/20-static-usb0.network ${D}${systemd_system_unitdir}/../network/20-static-usb0.network
 	install -m 644 ${WORKDIR}/10-statuc-eth0.network ${D}${systemd_system_unitdir}/../network/10-statuc-eth0.network
