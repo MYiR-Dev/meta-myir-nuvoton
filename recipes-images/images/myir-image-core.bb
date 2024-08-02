@@ -70,5 +70,5 @@ ROOTFS_POSTPROCESS_COMMAND += "remove_busybox_dd; "
 
 remove_busybox_dd () {
     rm -f ${IMAGE_ROOTFS}/bin/dd
-    ln -s ${IMAGE_ROOTFS}/bin/dd.coreutils ${IMAGE_ROOTFS}/bin/dd
+    cp ${IMAGE_ROOTFS}/bin/dd.coreutils ${IMAGE_ROOTFS}/bin/dd
 }
