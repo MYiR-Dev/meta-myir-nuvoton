@@ -107,6 +107,7 @@ IMAGE_INSTALL_append = "\
     mpeg2dec \
     ffmpeg \
     coreutils \
+    graphic-demo \
 "
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
