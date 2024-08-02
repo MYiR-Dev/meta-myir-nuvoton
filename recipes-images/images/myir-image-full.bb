@@ -41,7 +41,7 @@ IMAGE_INSTALL_append = "\
     i2c-tools \
     mmc-utils \
     mtd-utils \
-    can-utils \
+    canutils \
     busybox \
     util-linux \
     gdb \
@@ -106,7 +106,8 @@ IMAGE_INSTALL_append = "\
     libsocketcan \
     mpeg2dec \
     ffmpeg \
-    "
+    coreutils \
+"
 
 # Define to null ROOTFS_MAXSIZE to avoid partition size restriction
 IMAGE_ROOTFS_MAXSIZE = ""
@@ -201,4 +202,11 @@ CORE_IMAGE_EXTRA_INSTALL += " \
     ${IMAGE_QT_OPTIONAL_PART}   \
     ${IMAGE_QT_EXAMPLES_PART}   \
     "
+
+ROOTFS_POSTPROCESS_COMMAND += "remove_busybox_dd; "
+
+remove_busybox_dd () {
+    rm -f ${IMAGE_ROOTFS}/bin/dd
+    ln -s ${IMAGE_ROOTFS}/bin/dd.coreutils ${IMAGE_ROOTFS}/bin/dd
+}
 
