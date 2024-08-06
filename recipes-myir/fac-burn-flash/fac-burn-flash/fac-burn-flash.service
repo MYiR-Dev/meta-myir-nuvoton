@@ -3,8 +3,9 @@ Description=auto run script after psplash-quit service
 After=psplash-quit.service
 
 [Service]
-Type=oneshot
-ExecStart=/home/root/burn_flash.sh &
+Type=forking
+ExecStart=/home/root/burn_flash.sh
+TimeoutStartSec=0
 
 
 [Install]
