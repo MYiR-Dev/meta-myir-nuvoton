@@ -16,6 +16,7 @@ IMAGE_ROOTFS_EXTRA_SPACE_append = "${@bb.utils.contains("DISTRO_FEATURES", "syst
 IMAGE_FEATURES += " ssh-server-dropbear"
 
 IMAGE_INSTALL_append = "\
+    udev-extraconf \
     kernel-modules \
     directfb-env \
     v4l-utils \
