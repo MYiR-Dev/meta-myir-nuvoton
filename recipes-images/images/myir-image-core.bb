@@ -58,7 +58,6 @@ IMAGE_INSTALL_append = "\
     hostapd \
     expand-part \
     u-boot-nuvoton-fw-utils \
-    igh-ethercat \
     temp-ctrl \
     libubootenv \
     bc \
