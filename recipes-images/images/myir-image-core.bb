@@ -16,6 +16,8 @@ IMAGE_ROOTFS_EXTRA_SPACE_append = "${@bb.utils.contains("DISTRO_FEATURES", "syst
 IMAGE_FEATURES += " ssh-server-dropbear"
 
 IMAGE_INSTALL_append = "\
+    stress-ng \
+    rt-tests \
     udev-extraconf \
     kernel-modules \
     directfb-env \
@@ -36,7 +38,6 @@ IMAGE_INSTALL_append = "\
     iptables \
     iperf3 \
     iproute2 \
-    proftpd \
     tftp-hpa \
     ppp \
     quectel-cm \
