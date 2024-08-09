@@ -27,6 +27,7 @@ SRC_URI = "file://licenses/GPL-2 \
 		   file://framebuffer_test \
 		   file://myir_udhcpd.conf \
 		   file://myir_hostapd.conf \
+		   file://v4l2grab \
           "
           
 inherit  systemd
@@ -52,6 +53,7 @@ do_install (){
         install -m 755 ${WORKDIR}/uart_test_232 ${D}/usr/bin/uart_test_232
         install -m 755 ${WORKDIR}/watchdog_test ${D}/usr/bin/watchdog_test
         install -m 755 ${WORKDIR}/eeprom_test ${D}/usr/bin/eeprom_test
+        install -m 755 ${WORKDIR}/v4l2grab ${D}/usr/bin/v4l2grab
         install -m 755 ${WORKDIR}/framebuffer_test ${D}/usr/bin/framebuffer_test
         install -m 755 ${WORKDIR}/myir_hostapd.conf ${D}/etc/myir_hostapd.conf
         install -m 755 ${WORKDIR}/myir_udhcpd.conf ${D}/etc/myir_udhcpd.conf
