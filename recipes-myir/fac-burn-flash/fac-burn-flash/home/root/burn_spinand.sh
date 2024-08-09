@@ -97,9 +97,8 @@ update_success()
 
 update_fail()
 {
-	echo timer > /sys/class/leds/LED-Blue/trigger
-	echo 50 > /sys/class/leds/LED-Blue/delay_off
-	echo 50 > /sys/class/leds/LED-Blue/delay_on
+        echo none > /sys/class/leds/LED-Blue/trigger
+        echo 0 > /sys/class/leds/LED-Blue/brightness
 	while true;do
 		echo "Update failed..." > /dev/ttyS0
 		sleep 2
