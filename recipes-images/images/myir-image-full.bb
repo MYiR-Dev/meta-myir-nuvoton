@@ -57,7 +57,6 @@ IMAGE_INSTALL_append = "\
     iptables \
     iperf3 \
     iproute2 \
-    proftpd \
     tftp-hpa \
     ppp \
     quectel-cm \
