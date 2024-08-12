@@ -1,0 +1,28 @@
+From 34516b27c98ba61ff0ceee902a382e03ec1e2229 Mon Sep 17 00:00:00 2001
+From: "crack.xue" <crack.xue@myir.cn>
+Date: Wed, 22 May 2024 11:18:06 +0800
+Subject: [PATCH] FEAT: free PD6 and PD7
+
+---
+ fdts/ma35d1-cpu800-wb-256m.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/fdts/ma35d1-cpu800-wb-256m.dts b/fdts/ma35d1-cpu800-wb-256m.dts
+index 68d8b18a9..96a755409 100644
+--- a/fdts/ma35d1-cpu800-wb-256m.dts
++++ b/fdts/ma35d1-cpu800-wb-256m.dts
+@@ -20,7 +20,7 @@
+ 	};
+ };
+ 
+-&sspcc {
+-	gpio_s = <PD6_S>,
+-		<PD7_S>;
+-};
++// &sspcc {
++// 	gpio_s = <PD6_S>,
++// 		<PD7_S>;
++// };
+-- 
+2.25.1
+
