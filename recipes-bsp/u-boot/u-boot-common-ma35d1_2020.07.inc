@@ -8,8 +8,7 @@ unset _PYTHON_SYSCONFIGDATA_NAME
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://Licenses/gpl-2.0.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-#UBOOT_SRC ?= "git://github.com/OpenNuvoton/MA35D1_u-boot-v2020.07.git;branch=master;protocol=https"
-UBOOT_SRC ?= "git:///media/home/beste/01_Pro/ma35/bsp/new/myir-nuvoton-uboot;branch=feature-v2020.07;protocol=file"
+UBOOT_SRC ?= "git://github.com/MYiR-Dev/myir-nuvoton-uboot.git;branch=master;protocol=https"
 
 #SRCBRANCH = "2020.07"
 SRCBRANCH = "feature-v2020.07"

@@ -20,8 +20,7 @@ SRCBRANCH = "feature-L5.10.140"
 LOCALVERSION = "-${SRCBRANCH}"
 KERNEL_SRCREV = "${AUTOREV}"
 
-#KERNEL_SRC ?= "git://github.com/OpenNuvoton/MA35D1_linux-5.10.y.git;protocol=https"
-KERNEL_SRC ?= "git:///media/home/beste/01_Pro/ma35/bsp/new/new/myir-nuvoton-linux;protocol=file"
+KERNEL_SRC ?= "git://github.com/MYiR-Dev/myir-nuvoton-linux.git;protocol=https"
 SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
 
 SRC_URI += " \
