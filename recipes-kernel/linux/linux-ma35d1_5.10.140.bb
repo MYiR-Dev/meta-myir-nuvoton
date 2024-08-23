@@ -20,8 +20,8 @@ SRCBRANCH = "feature-L5.10.140"
 LOCALVERSION = "-${SRCBRANCH}"
 KERNEL_SRCREV = "${AUTOREV}"
 
-KERNEL_SRC ?= "git://github.com/MYiR-Dev/myir-nuvoton-linux.git;protocol=https"
-SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
+KERNEL_SRC ?= "git://github.com/MYiR-Dev/myir-nuvoton-linux.git;protocol=https;branch=${SRCBRANCH}"
+SRC_URI = "${KERNEL_SRC};"
 
 SRC_URI += " \
     file://optee.config \

@@ -58,12 +58,12 @@ updating()
 	echo timer > /sys/class/leds/LED-Blue/trigger
 	echo 500 > /sys/class/leds/LED-Blue/delay_off
 	echo 500 > /sys/class/leds/LED-Blue/delay_on	
-#	time=1
-#	while true;do
-#		echo "[${time}]Updating..."
-#		sleep 1
-#		time=$((time + 1))
-#	done
+	time=1
+	while true;do
+		echo "[${time}]Updating..." > /dev/ttyS0
+		sleep 1
+		time=$((time + 1))
+	done
 }
 
 update_success()
@@ -214,124 +214,38 @@ resize2fs   ${DRIVE}p1 > /dev/null 2>&1
 sync
 }
 
-updating
-# pid=$!
+updating &
+pid=$!
 clear
 
 
 echo "---------------------------start erasing_emmc---------------------------" > /dev/ttyS0
-draw_progress_bar 0 > /dev/ttyS0
-printf "\r"  > /dev/ttyS0
-erasing_emmc  > /home/root/log.txt &
-progress_flag="$(ps | awk '{print $1}' | grep $!)"
-for i in {1..99}; do
-	if [ 1 -eq $(cat /home/root/fail.txt) ];then
-	exit 0
-	fi
-	if [ -z $(ps | awk '{print $1}' | grep $progress_flag) ];then
-	break
-	fi
-    draw_progress_bar $i > /dev/ttyS0
-    sleep 0.1
-    printf "\r"  > /dev/ttyS0
-done
-draw_progress_bar 100 > /dev/ttyS0
-echo " " > /dev/ttyS0
+erasing_emmc
 echo "---------------------------end erasing_emmc---------------------------" > /dev/ttyS0
-clear
 echo " " > /dev/ttyS0
+
 echo "---------------------------start fidsk_emmc---------------------------" > /dev/ttyS0
-draw_progress_bar 0 > /dev/ttyS0
-printf "\r"  > /dev/ttyS0
-fidsk_emmc &
-progress_flag="$(ps | awk '{print $1}' | grep $!)"
-for i in {1..99}; do
-	if [ 1 -eq $(cat /home/root/fail.txt) ];then
-	exit 0
-	fi
-	if [ -z $(ps | awk '{print $1}' | grep $progress_flag) ];then
-	break
-	fi
-    draw_progress_bar $i > /dev/ttyS0
-    sleep 0.1
-    printf "\r"  > /dev/ttyS0
-done
-draw_progress_bar 100 > /dev/ttyS0
-echo " " > /dev/ttyS0
+fidsk_emmc
 echo "---------------------------end fidsk_emmc---------------------------" > /dev/ttyS0
-clear
 echo " " > /dev/ttyS0
+
 echo "---------------------------start burn_boot---------------------------" > /dev/ttyS0
-draw_progress_bar 0 > /dev/ttyS0
-printf "\r"  > /dev/ttyS0
-burn_boot &
-progress_flag="$(ps | awk '{print $1}' | grep $!)"
-for i in {1..99}; do
-	if [ 1 -eq $(cat /home/root/fail.txt) ];then
-	exit 0
-	fi
-	if [ -z $(ps | awk '{print $1}' | grep $progress_flag) ];then
-	break
-	fi
-    draw_progress_bar $i > /dev/ttyS0
-    sleep 0.1
-    printf "\r"  > /dev/ttyS0
-done
-draw_progress_bar 100 > /dev/ttyS0
-echo " " > /dev/ttyS0
+burn_boot
 echo "---------------------------end burn_boot---------------------------" > /dev/ttyS0
-clear
 echo " " > /dev/ttyS0
-#boot_result="{\"step\":\"firmware\",\"PN\":\"xxx\",\"SN\":\"xxx\",\"CN\":\"xxx\",\"result\":{\"module\":\"boot\",\"progress\":\"20\", \"state\":\"0\",\"message\":\"write boot succuess\"}}"
-#echo ">>>[${#boot_result}]${boot_result}"
 
 echo "---------------------------start burn_image---------------------------" > /dev/ttyS0
-draw_progress_bar 0 > /dev/ttyS0
-printf "\r"  > /dev/ttyS0
-burn_image &
-progress_flag="$(ps | awk '{print $1}' | grep $!)"
-for i in {1..99}; do
-	if [ 1 -eq $(cat /home/root/fail.txt) ];then
-	exit 0
-	fi
-	if [ -z $(ps | awk '{print $1}' | grep $progress_flag) ];then
-	break
-	fi
-    draw_progress_bar $i > /dev/ttyS0
-    sleep 0.1
-    printf "\r"  > /dev/ttyS0
-done
-draw_progress_bar 100 > /dev/ttyS0
-echo " " > /dev/ttyS0
+burn_image
 echo "---------------------------end burn_image---------------------------" > /dev/ttyS0
 clear
-#image_result="{\"step\":\"firmware\",\"PN\":\"xxx\",\"SN\":\"xxx\",\"CN\":\"xxx\",\"result\":{\"module\":\"image\",\"progress\":\"20\", \"state\":\"0\",\"message\":\"write image succuess\"}}"
-#echo ">>>[${#image_result}]${image_result}"
-echo " " > /dev/ttyS0
+
 echo "---------------------------start burn_rootfs---------------------------" > /dev/ttyS0
-draw_progress_bar 0 > /dev/ttyS0
-printf "\r"  > /dev/ttyS0
-burn_rootfs &
-progress_flag="$(ps | awk '{print $1}' | grep $!)"
-for i in {1..99}; do
-	if [ 1 -eq $(cat /home/root/fail.txt) ];then
-	exit 0
-	fi
-	if [ -z $(ps | awk '{print $1}' | grep $progress_flag) ];then
-	break
-	fi
-    draw_progress_bar $i > /dev/ttyS0
-    sleep 1
-    printf "\r"  > /dev/ttyS0
-done
-draw_progress_bar 100 > /dev/ttyS0
-echo " " > /dev/ttyS0
+burn_rootfs
 echo "---------------------------end burn_rootfs---------------------------" > /dev/ttyS0
-clear
 echo " " > /dev/ttyS0
-#rootfs_result="{\"step\":\"firmware\",\"PN\":\"xxx\",\"SN\":\"xxx\",\"CN\":\"xxx\",\"result\":{\"module\":\"rootfs\",\"progress\":\"20\", \"state\":\"0\",\"message\":\"write rootfs succuess\"}}"
-#echo ">>>[${#rootfs_result}]${rootfs_result}"
 
 resize2fs_emmc
+
+kill $pid
 
 update_success
