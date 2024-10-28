@@ -12,6 +12,7 @@ SRC_URI = "file://home/root/burn_emmc.sh \
 	   file://home/root/burn_spinand.sh \
 	    file://home/root/Manifest-spinand \
 	    file://home/root/Manifest-emmc \
+	    file://home/root/Manifest-emmc-512m \
 	   file://fac-burn-flash.service \
            file://licenses/GPL-2 \
           "
@@ -27,6 +28,10 @@ do_install(){
         	install -m 755 ${WORKDIR}/home/root/burn_emmc.sh ${D}/home/root/burn_flash.sh
         	install -m 755 ${WORKDIR}/home/root/Manifest-emmc ${D}/home/root/lma35_images/Manifest
 		install -m 755 ${DEPLOY_DIR_IMAGE}/myir-image-full-${MACHINENAME}.ext4  ${D}/home/root/lma35_images/rootfs-full.ext4
+	elif [ "${MACHINENAME}" = "myd-lma35-emmc-512m" ];then
+                install -m 755 ${WORKDIR}/home/root/burn_emmc.sh ${D}/home/root/burn_flash.sh
+                install -m 755 ${WORKDIR}/home/root/Manifest-emmc-512m ${D}/home/root/lma35_images/Manifest
+                install -m 755 ${DEPLOY_DIR_IMAGE}/myir-image-full-${MACHINENAME}.ext4  ${D}/home/root/lma35_images/rootfs-full.ext4
 	elif [ "${MACHINENAME}" = "myd-lma35-spinand" ];then
 		install -m 755 ${WORKDIR}/home/root/burn_spinand.sh ${D}/home/root/burn_flash.sh
         	install -m 755 ${WORKDIR}/home/root/Manifest-spinand ${D}/home/root/lma35_images/Manifest
@@ -36,6 +41,10 @@ do_install(){
 	for i in ${IMAGE_BOOT_FILES};do
 		install -m 755 ${DEPLOY_DIR_IMAGE}/${i} ${D}/home/root/lma35_images/${i}
 	done
+
+	for i in ${AGINE_BOOT_FILES};do
+                install -m 755 ${DEPLOY_DIR_IMAGE}/${i} ${D}/home/root/${i}
+        done
 	
 }
 
