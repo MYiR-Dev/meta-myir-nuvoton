@@ -8,12 +8,12 @@ unset _PYTHON_SYSCONFIGDATA_NAME
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://Licenses/gpl-2.0.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-UBOOT_SRC ?= "git://github.com/MYiR-Dev/myir-nuvoton-uboot.git;branch=feature-v2020.07;protocol=https"
+UBOOT_SRC ?= "git://github.com/MYiR-Dev/myir-nuvoton-uboot.git;branch=develop_2020.07;protocol=https"
 
 #SRCBRANCH = "2020.07"
-SRCBRANCH = "feature-v2020.07"
+SRCBRANCH = "develop_2020.07"
 SRC_URI = "${UBOOT_SRC}"
-#UBOOT_SRCREV = "feature-v2020.07"
+#UBOOT_SRCREV = "develop_2020.07"
 UBOOT_SRCREV = "${AUTOREV}"
 SRCREV = "${UBOOT_SRCREV}"
 
